@@ -3,9 +3,9 @@ submit.addEventListener('click', () => {
     d = d.toString()
     const data = {
         firstName: `${namee.value}`,
-        lastName: `${age.value}`,
-        emailAddress: `${email.value}`,
-        password: `${mobile.value}`,
+        age: `${age.value}`,
+        email: `${email.value}`,
+        mobile: `${mobile.value}`,
         time: `${d.substring(0, 24)}`,
     }
     const options = {
