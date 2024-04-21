@@ -1,5 +1,5 @@
 const { initializeApp } = require('firebase/app')
-const { getDatabase, ref, push, onValue, set } = require('firebase/database')
+const { getDatabase, ref, onValue, set } = require('firebase/database')
 
 const express = require('express')
 const path = require('path')
@@ -22,18 +22,25 @@ const database = getDatabase(initialiseApp)
 const usersDB = ref(database, "users")
 
 onValue(usersDB, (snapshot) => {
-    console.log("**********************************************************")
-    console.log(snapshot.val())
+    console.log("User Database updated..")
 })
 
 app.get('/index', (req, res) => {
     res.sendFile(path.join(__dirname, '/web_pages/index.html'))
 })
 
-app.post('/index', (req, res) => {
+app.post('/send-user-details', (req, res) => {
     const data = req.body
+
     const db = getDatabase();
-    set(ref(db, 'users/' + 'swapnil'), data)
+    const userName = data['firstName']
+
+    set(ref(db, 'users/' + userName), data)
+    res.send({'status': 'successful'})
+})
+
+app.post('/update-likes', (req, res) => {
+    const data = req.body
 })
 
 app.listen(port, () => {

@@ -1,3 +1,14 @@
+async function postData(url = "", data = {}, method_ = "") {
+    const response = await fetch(url, {
+        method: method_,
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+    });
+    return response.json();
+}
+
 submit.addEventListener('click', () => {
     let d = new Date()
     d = d.toString()
@@ -8,17 +19,24 @@ submit.addEventListener('click', () => {
         mobile: `${mobile.value}`,
         time: `${d.substring(0, 24)}`,
     }
-    const options = {
-        method: 'POST',
-        headers: {
-            'Content-Type': "application/json",
-        },
-        body: JSON.stringify(data),
-    };
-    fetch('/index', options).catch((error) => {
-        // to see this error open network tab
+    
+    postData("/send-user-details", data, "POST")
+})
+
+const likes = document.getElementsByClassName('like')
+
+Array.from(likes).forEach(values => {
+    values.addEventListener('click', (e) => {
+        const data = {
+            postTitle: `${e.target.getAttribute('id')}`
+        }
+
+        postData("/update-likes", data, "POST").then(response => {
+            e.target.innerHTML = `Like ${response["count"]}`
+        })
     })
 })
+
 
 // To get data from server
 
