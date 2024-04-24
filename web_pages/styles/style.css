@@ -1,5 +1,5 @@
 :root {
-    --skeleton-background: blue;
+    --skeleton-background: #f8f8f8;
     --skeleton-radius: 20px;
     --floating-background: rgba(255, 255, 255, 0.4);
     --floating-color: rgba(0, 0, 0, 0.808);
@@ -16,6 +16,10 @@
 *::after,
 *::before {
     box-sizing: border-box;
+}
+
+html {
+    background-color: var(--skeleton-background);
 }
 
 body {
@@ -56,7 +60,7 @@ body {
 .floating-navigation > ul > li {
     cursor: pointer;
     flex-grow: 1;
-    padding: .85rem;
+    padding: .95rem;
     background-color: var(--floating-background);
     border-radius: var(--skeleton-child-radius);
     letter-spacing: .06rem;
@@ -67,6 +71,9 @@ body {
 
 .floating-navigation > ul > li:hover {
     flex-grow: 3;
+    background-color: black;
+    color: #f8f8f8;
+    text-decoration: underline;
 }
 
 @media (width < 570px) {
