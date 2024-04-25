@@ -18,26 +18,27 @@
     box-sizing: border-box;
 }
 
-html {
-    background-color: var(--skeleton-background);
-}
+/* html {
+} */
 
 body {
+    background-color: var(--skeleton-background);
     font-family: "Russo One", sans-serif;
     overflow-x: hidden;
 }
 
-.container {
-    height: 100svh;
-    display: flex;
-    flex-direction: column;
+.navigation {
+    display: grid;
+    place-items: center;
+    position: sticky;
+    top: 0;
+    padding: 1rem;
+    z-index: 99999;
+    /* background: rgba(255, 0, 0, 0.514); */
 }
 
 .floating-navigation {
-    position: sticky;
-    top: 1rem;
-    margin: 0 auto;
-    width: 70%;
+    width: max(44rem, 70%);
     padding: .35rem;
     border-radius: var(--skeleton-radius);
     background-color: var(--floating-background);
@@ -47,17 +48,18 @@ body {
     font-weight: 400;
     font-style: normal;
     border: .5px solid var(--skeleton-border);
+    transition: width 2s, height 2s;
 }
 
-.floating-navigation > ul {
+.floating-navigation>ul {
     list-style: none;
     padding: 0;
     display: flex;
     gap: .6rem;
-    font-size: clamp(.9rem, .3rem + 1vw, 2rem);
+    font-size: clamp(1.35rem, .3rem + 1vw, 2rem);
 }
 
-.floating-navigation > ul > li {
+.floating-navigation>ul>li {
     cursor: pointer;
     flex-grow: 1;
     padding: .95rem;
@@ -69,15 +71,63 @@ body {
     border: .5px solid var(--skeleton-border);
 }
 
-.floating-navigation > ul > li:hover {
+.floating-navigation>ul>li:hover {
     flex-grow: 3;
     background-color: black;
     color: #f8f8f8;
     text-decoration: underline;
 }
 
-@media (width < 570px) {
+.container {
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+}
+
+.body-content {
+    margin: 4rem 2rem;
+}
+
+/* Don't give width 100% or it will not work when the window resize it self */
+.static {
+    position: sticky;
+    mix-blend-mode: difference;
+    top: 5rem;
+    font-size: 3em;
+    display: inline-block;
+    color: white;
+    background-color: black;
+}
+
+.move {
+    text-align: justify;
+    line-height: 2;
+}
+
+/* media query for small screen size */
+
+@media (width < 768px) {
+    .navigation {
+        padding: .5rem;
+        place-items: end;
+    }
+
     .floating-navigation {
-        width: max-content;
+        max-width: 4.375rem;
+        /* aspect-ratio: 1; */
+        overflow: hidden;
+    }
+
+    .floating-navigation:hover {
+        width: 300px;
+    }
+
+
+    .floating-navigation:hover > ul {
+        flex-direction: column;
+    }
+
+    .body-content {
+        margin: 0 .5rem;
     }
 }

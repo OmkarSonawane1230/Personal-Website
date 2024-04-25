@@ -11,7 +11,6 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 
 app.use(express.static(path.join(__dirname, './web_pages')))
-app.use(express.static(path.join(__dirname, './data')))
 
 const appSettings = {
     databaseURL: "https://personal-site-e2936-default-rtdb.asia-southeast1.firebasedatabase.app"
@@ -27,6 +26,10 @@ onValue(usersDB, (snapshot) => {
 
 app.get('/index', (req, res) => {
     res.sendFile(path.join(__dirname, '/web_pages/index.html'))
+})
+
+app.get('/testing', (req, res) => {
+    res.sendFile(path.join(__dirname, '/web_pages/testing.html'))
 })
 
 app.post('/send-user-details', (req, res) => {
