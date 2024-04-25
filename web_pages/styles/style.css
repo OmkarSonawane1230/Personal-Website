@@ -18,9 +18,6 @@
     box-sizing: border-box;
 }
 
-/* html {
-} */
-
 body {
     background-color: var(--skeleton-background);
     font-family: "Russo One", sans-serif;
@@ -34,7 +31,6 @@ body {
     top: 0;
     padding: 1rem;
     z-index: 99999;
-    /* background: rgba(255, 0, 0, 0.514); */
 }
 
 .floating-navigation {
@@ -48,7 +44,8 @@ body {
     font-weight: 400;
     font-style: normal;
     border: .5px solid var(--skeleton-border);
-    transition: width 2s, height 2s;
+    transition: width 500ms;
+    overflow: hidden;
 }
 
 .floating-navigation>ul {
@@ -76,6 +73,12 @@ body {
     background-color: black;
     color: #f8f8f8;
     text-decoration: underline;
+}
+
+.floating-navigation > img {
+    display: none;
+    width: 100%;
+    height: 100%;
 }
 
 .container {
@@ -113,21 +116,34 @@ body {
     }
 
     .floating-navigation {
-        max-width: 4.375rem;
-        /* aspect-ratio: 1; */
-        overflow: hidden;
+        width: 4.375rem;
+        height: 4.375rem;
     }
 
-    .floating-navigation:hover {
-        width: 300px;
+    .floating-navigation > ul {
+        display: none;
     }
 
-
-    .floating-navigation:hover > ul {
-        flex-direction: column;
+    .floating-navigation > img {
+        display: block;
     }
 
     .body-content {
         margin: 0 .5rem;
     }
+}
+
+.show-floating-navigation > ul {
+    display: flex;
+    flex-direction: column;
+}
+
+.show-floating-navigation > img {
+    display: none;
+}
+
+.show-floating-navigation {
+    width: 100%;
+    height: auto;
+    transition: width 500ms;
 }

@@ -4,7 +4,7 @@ const { getDatabase, ref, onValue, set } = require('firebase/database')
 const express = require('express')
 const path = require('path')
 const app = express()
-const port = 5600
+const port = 5500
 
 const bodyParser = require('body-parser')
 app.use(bodyParser.json())
@@ -26,10 +26,6 @@ onValue(usersDB, (snapshot) => {
 
 app.get('/index', (req, res) => {
     res.sendFile(path.join(__dirname, '/web_pages/index.html'))
-})
-
-app.get('/testing', (req, res) => {
-    res.sendFile(path.join(__dirname, '/web_pages/testing.html'))
 })
 
 app.post('/send-user-details', (req, res) => {
