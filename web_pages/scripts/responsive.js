@@ -1,3 +1,7 @@
+window.addEventListener('resize', () => {
+    if (window.innerWidth >= 768) document.getElementsByClassName('floating-navigation')[0].classList.remove('show-floating-navigation');
+})
+
 document.getElementsByClassName('floating-navigation')[0].addEventListener('click', () => {
-    document.getElementsByClassName('floating-navigation')[0].classList.toggle('show-floating-navigation');
+    if (window.innerWidth < 768) document.getElementsByClassName('floating-navigation')[0].classList.toggle('show-floating-navigation');
 })

@@ -1,7 +1,7 @@
 :root {
     --skeleton-background: #f8f8f8;
     --skeleton-radius: 20px;
-    --floating-background: rgba(255, 255, 255, 0.4);
+    --floating-background: rgba(250, 250, 252, .8);
     --floating-color: rgba(0, 0, 0, 0.808);
     --skeleton-child-radius: 15px;
     --skeleton-border: rgba(87, 87, 87, 0.966);
@@ -21,7 +21,6 @@
 body {
     background-color: var(--skeleton-background);
     font-family: "Russo One", sans-serif;
-    overflow-x: hidden;
 }
 
 .navigation {
@@ -39,8 +38,8 @@ body {
     border-radius: var(--skeleton-radius);
     background-color: var(--floating-background);
     color: var(--floating-color);
-    backdrop-filter: blur(1rem);
-    -webkit-backdrop-filter: blur(1rem);
+    backdrop-filter: saturate(180%) blur(20px);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
     font-weight: 400;
     font-style: normal;
     border: .5px solid var(--skeleton-border);
@@ -82,17 +81,15 @@ body {
 }
 
 .container {
+    margin: 0 2rem;
     min-height: 100svh;
     display: flex;
     flex-direction: column;
 }
 
-.body-content {
-    margin: 4rem 2rem;
-}
-
 /* Don't give width 100% or it will not work when the window resize it self */
-.static {
+
+/* .static {
     position: sticky;
     mix-blend-mode: difference;
     top: 5rem;
@@ -105,11 +102,15 @@ body {
 .move {
     text-align: justify;
     line-height: 2;
-}
+} */
 
 /* media query for small screen size */
 
 @media (width < 768px) {
+    .container {
+        margin: 0 .5rem;
+    }
+
     .navigation {
         padding: .5rem;
         place-items: end;
@@ -125,6 +126,7 @@ body {
     }
 
     .floating-navigation > img {
+        cursor: pointer;
         display: block;
     }
 
@@ -145,5 +147,5 @@ body {
 .show-floating-navigation {
     width: 100%;
     height: auto;
-    transition: width 500ms;
+    transition: width 300ms;
 }
